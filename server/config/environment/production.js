@@ -1,5 +1,4 @@
 'use strict';
-
 // Production specific configuration
 // =================================
 module.exports = {
@@ -11,7 +10,7 @@ module.exports = {
   // Server port
   port:     process.env.OPENSHIFT_NODEJS_PORT ||
             process.env.PORT ||
-            8080,
+            9000,
 
   // MongoDB connection options
   mongo: {

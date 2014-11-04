@@ -19,7 +19,6 @@ function onConnect(socket) {
 
   // Insert sockets below
   require('../api/discipline/discipline.socket').register(socket);
-  require('../api/category/category.socket').register(socket);
   require('../api/skill/skill.socket').register(socket);
 }
 
