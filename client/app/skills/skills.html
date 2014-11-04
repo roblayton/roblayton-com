@@ -1,0 +1,191 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container">
+    <!--Begin Creation Container-->
+    <div ng-show="isLoggedIn()">
+
+        <!--Disciplines-->
+        <h2>Add Disciplines</h2>
+        <form class="skill-form" ng-submit="addDiscipline()" name="categoryForm">
+            <div class="form-group">
+                <label for="addDiscipline">Discipline</label>
+                <input class="form-control" ng-model="newDisciplineName" rows="3" placeholder="Enter discipline" required></input>
+            </div>
+            <div class="form-group">
+                <input class="form-control" ng-model="newDisciplineType" rows="3" placeholder="Enter type" required></input>
+            </div>
+            <div class="form-group">
+                <textarea class="form-control" ng-model="newDisciplineInfo" rows="3" placeholder="Enter info"></textarea>
+            </div>
+            <div class="form-group">
+                <input class="btn btn-primary" type="submit" ng-disabled="disciplineForm.$invalid" value="Post">
+            </div>
+        </form>
+
+        <!--Skills-->
+        <h2>Add Skills</h2>
+        <form class="skill-form" ng-submit="addSkill()" name="skillForm">
+            <div class="form-group">
+                <label for="addSkill">Skill</label>
+                <input class="form-control" ng-model="newSkillName" rows="3" placeholder="Enter a new skill" required></input>
+            </div>
+            <div class="form-group">
+                <label for="addProficiency">Proficiency</label>
+                <input class="form-control" ng-model="newProficiency" rows="3" placeholder="Enter proficiency" required></input>
+            </div>
+            <input class="btn btn-primary" type="submit" ng-disabled="skillForm.$invalid" value="Post">
+        </form>
+    </div>
+
+    <!--End Creation Container-->
+
+    <!--Begin List Container-->
+
+    <h2>About</h2>
+    <p>This section is designed to give you a better understanding of my skills from a high level. While I've primarily been engaged in management roles, I'm very hands on in the development process, leading teams on the engineering side. Most of my experience is in advertising, but I've also worked in education and litigation support. I've worked with startups, enterprise-level companies, and everything in between.</p>
+
+    <!--Display Disciplines-->
+    <div class="well" ng-repeat="discipline in disciplines | filter: {type: 'question'}" ng-show="isLoggedIn()">
+        <!--Logged In-->
+        <form class="form-inline" role="form" ng-submit="updateDiscipline(discipline)">
+            <div class="form-group">
+                <input class="form-control" ng-model="discipline.name" rows="3"></input> 
+            </div>
+            <div class="form-group">
+                <input class="form-control" ng-model="discipline.type" rows="3"></input> 
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-danger" ng-click="deleteDiscipline(discipline)">&times;</button>
+            </div>
+            <br/>
+            <div class="form-group">
+                <textarea class="form-control" ng-model="discipline.info" rows="3" cols="50" placeholder="Enter info"></textarea>
+            </div>
+            <br/>
+            <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+
+        <!--Display the dropdown for selecting new skills-->
+        <form class="form-inline" role="form" ng-show="isLoggedIn()">
+            <p>
+            <select ng-model="mySkill" ng-options="skill.name for skill in skills">
+                <option ng-repeat="skill in skills" value="{{skill.name}}">-- choose skill --</option>
+            </select>
+
+            <button class="btn btn-success btn-sm glyphicon-plus" ng-click="attachSkill(discipline, mySkill)"></button>
+            </p>
+        </form>
+
+        <!--Display skills for each discipline-->
+        <span ng-repeat="skill in discipline.skills">
+            <p>
+            <form class="form-inline" role="form" ng-submit="updateSkill(skill)" ng-show="isLoggedIn()">
+                <div class="form-group">
+                    <input class="form-control" ng-model="skill.name" rows="3"></input>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" ng-model="skill.proficiency" rows="3"></input>
+                </div>
+
+                <div class="form-group">
+                    <button type="button" class="btn btn-warning glyphicon-minus" ng-click="detachSkill(discipline, skill)"></button>
+                    <button type="button" class="btn btn-danger" ng-click="deleteSkill(skill)">&times;</button>
+                </div>
+                <button type="submit" class="btn btn-default" ng-hide="true"></button>
+            </form>
+        </span>
+    </div>
+
+    <!--Public-->
+    <accordion close-others="oneAtATime" ng-hide="isLoggedIn()">
+            <accordion-group is-open="accordion.open" ng-repeat="discipline in disciplines | filter: {type: 'question'}">
+                <accordion-heading>
+                    {{discipline.name}}<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': accordion.open, 'glyphicon-chevron-right': !accordion.open}"></i>
+                </accordion-heading>
+                <div ng-hide="isLoggedIn()">
+
+                {{discipline.info}}
+                <!--Display skills for each discipline-->
+                <span ng-repeat="skill in discipline.skills">
+                    <span>
+                        <button class="btn btn-primary" type="button">
+                            {{skill.name}} <span class="badge">{{skill.proficiency}}</span>
+                        </button>
+                    </span>
+                </span>
+                </div>
+            </accordion-group>
+    </accordion>
+
+    <h2>Core Skills</h2>
+    <p>These are my core skills broken down by category.</p>
+
+    <!--Display Disciplines-->
+    <div class="well" ng-repeat="discipline in disciplines | filter: {type: 'core'}">
+        <!--Logged In-->
+        <form class="form-inline" role="form" ng-submit="updateDiscipline(discipline)" ng-show="isLoggedIn()">
+            <div class="form-group">
+                <input class="form-control" ng-model="discipline.name" rows="3"></input> 
+            </div>
+            <div class="form-group">
+                <input class="form-control" ng-model="discipline.type" rows="3"></input> 
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-danger" ng-click="deleteDiscipline(discipline)">&times;</button>
+            </div>
+            <br/>
+            <div class="form-group">
+                <textarea class="form-control" ng-model="discipline.info" rows="3" cols="50" placeholder="Enter info"></textarea>
+            </div>
+            <br/>
+            <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+
+        <!--Display the dropdown for selecting new skills-->
+        <form class="form-inline" role="form" ng-show="isLoggedIn()">
+            <p>
+            <select ng-model="mySkill" ng-options="skill.name for skill in skills">
+                <option ng-repeat="skill in skills" value="{{skill.name}}">-- choose skill --</option>
+            </select>
+
+            <button class="btn btn-success btn-sm glyphicon-plus" ng-click="attachSkill(discipline, mySkill)"></button>
+            </p>
+        </form>
+
+        <!--Display skills for each discipline-->
+        <span ng-repeat="skill in discipline.skills">
+            <p>
+            <form class="form-inline" role="form" ng-submit="updateSkill(skill)" ng-show="isLoggedIn()">
+                <div class="form-group">
+                    <input class="form-control" ng-model="skill.name" rows="3"></input>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" ng-model="skill.proficiency" rows="3"></input>
+                </div>
+
+                <div class="form-group">
+                    <button type="button" class="btn btn-warning glyphicon-minus" ng-click="detachSkill(discipline, skill)"></button>
+                    <button type="button" class="btn btn-danger" ng-click="deleteSkill(skill)">&times;</button>
+                </div>
+                <button type="submit" class="btn btn-default" ng-hide="true"></button>
+            </form>
+        </span>
+
+
+        <!--Public-->
+        <div ng-hide="isLoggedIn()">
+        <h3>{{discipline.name}}</h3>
+        <p>{{discipline.info}}</p>
+
+        <!--Display skills for each discipline-->
+        <span ng-repeat="skill in discipline.skills">
+            <span>
+                <button class="btn btn-primary" type="button">
+                    {{skill.name}} <span class="badge">{{skill.proficiency}}</span>
+                </button>
+            </span>
+        </span>
+        </div>
+
+    </div>
+</div>
