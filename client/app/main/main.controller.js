@@ -90,7 +90,4 @@ angular.module('roblaytonComApp')
         });
     };
 
-    // Accordion
-    
-
   });
