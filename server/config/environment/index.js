@@ -13,13 +13,13 @@ function requiredProcessEnv(name) {
 // All configurations will extend these options
 // ============================================
 var all = {
-  env: process.env.NODE_ENV,
+  env: process.env.NODE_ENV | 'production',
 
   // Root path of server
   root: path.normalize(__dirname + '/../../..'),
 
   // Server port
-  port: process.env.PORT || 9000,
+  port: process.env.PORT || 9001,
 
   // Should we populate the DB with sample data?
   seedDB: false,
