@@ -91,9 +91,6 @@ angular.module('roblaytonComApp')
     };
 
     // Accordion
-    $scope.accordion = {
-        isFirstOpen: true,
-        isFirstDisabled: false
-    };
+    
 
   });

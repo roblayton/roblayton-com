@@ -43,6 +43,7 @@
 
     <h2>About</h2>
     <p>This section is designed to give you a better understanding of my skills from a high level. While I've primarily been engaged in management roles, I'm very hands on in the development process, leading teams on the engineering side. Most of my experience is in advertising, but I've also worked in education and litigation support. I've worked with startups, enterprise-level companies, and everything in between.</p>
+    <p>Expand the following sections to learn more.</p>
 
     <!--Display Disciplines-->
     <div class="well" ng-repeat="discipline in disciplines | filter: {type: 'question'}" ng-show="isLoggedIn()">
@@ -100,19 +101,21 @@
     <accordion close-others="oneAtATime" ng-hide="isLoggedIn()">
             <accordion-group is-open="accordion.open" ng-repeat="discipline in disciplines | filter: {type: 'question'}">
                 <accordion-heading>
-                    {{discipline.name}}<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': accordion.open, 'glyphicon-chevron-right': !accordion.open}"></i>
+                    <a href="#">{{discipline.name}}</a><i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': accordion.open, 'glyphicon-chevron-right': !accordion.open}"></i>
                 </accordion-heading>
                 <div ng-hide="isLoggedIn()">
 
-                {{discipline.info}}
-                <!--Display skills for each discipline-->
-                <span ng-repeat="skill in discipline.skills">
-                    <span>
-                        <button class="btn btn-primary" type="button">
-                            {{skill.name}} <span class="badge">{{skill.proficiency}}</span>
-                        </button>
+                    {{discipline.info}}
+                    <!--Display skills for each discipline-->
+                    <div>
+                    <span ng-repeat="skill in discipline.skills">
+                        <span>
+                            <button class="btn btn-primary" type="button">
+                                {{skill.name}} <span class="badge">{{skill.proficiency}}</span>
+                            </button>
+                        </span>
                     </span>
-                </span>
+                    </div>
                 </div>
             </accordion-group>
     </accordion>

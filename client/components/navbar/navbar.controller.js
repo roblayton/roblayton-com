@@ -6,8 +6,14 @@ angular.module('roblaytonComApp')
       'title': 'Home',
       'link': '/'
     }, {
-      'title': 'Skills',
-      'link': '/skills'
+      'title': 'Blog',
+      'link': 'http://blog.roblayton.com'
+    }, {
+      'title': 'Github',
+      'link': 'https://github.com/roblayton'
+    }, {
+      'title': 'LinkedIn',
+      'link': 'http://www.linkedin.com/in/roblayton'
     }];
 
     $scope.isCollapsed = true;
