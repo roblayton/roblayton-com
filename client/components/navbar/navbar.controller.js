@@ -3,7 +3,7 @@
 angular.module('roblaytonComApp')
   .controller('NavbarCtrl', function ($scope, $location, Auth) {
     $scope.menu = [{
-      'title': 'Home',
+      'title': 'About',
       'link': '/'
     }, {
       'title': 'Blog',
