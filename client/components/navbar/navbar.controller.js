@@ -16,7 +16,7 @@ angular.module('roblaytonComApp')
       'link': 'http://www.linkedin.com/in/roblayton'
     }, {
       'title': 'Resume',
-      'link': 'https://docs.google.com/document/d/1Iqkc-8_73aZsBJZyE4bMCEJtVsgQcXAJXdlBDHu26bc/pub'
+      'link': 'https://docs.google.com/document/d/1lA0THoesuNTgYgg72Rm-izNcg9Y7LTYx9MhBfoRbtKQ/pub'
     }];
 
     $scope.isCollapsed = true;
