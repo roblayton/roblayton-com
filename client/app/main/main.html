@@ -116,14 +116,15 @@
                 {{discipline.info}}
                 <!--Display skills for each discipline-->
                 <div>
-                    <span ng-repeat="skill in discipline.skills">
-                        <span>
+                    <ul>
+                      <li ng-repeat="skill in discipline.skills">
                             <!--<button class="btn btn-primary btn-sm" disabled type="button">-->
                                 <!--{{skill.name}} <span class="badge">{{skill.proficiency}}</span>-->
                             <!--</button>-->
                             <!--{{ skill.name}}<span ng-show="!$last">,&nbsp;</span>-->
-                        </span>
-                    </span>
+                            {{ skill.name}}
+                      </li>
+                    </ul>
                 </div>
             </div>
             </accordion-group>
@@ -192,14 +193,15 @@
                     <p>{{discipline.info}}</p>
 
                     <!--Display skills for each discipline-->
-                    <span ng-repeat="skill in discipline.skills">
-                        <span>
+                    <ul>
+                      <li ng-repeat="skill in discipline.skills">
                             <!--<button class="btn btn-primary btn-sm" disabled type="button">-->
                                 <!--{{skill.name}} <span class="badge">{{skill.proficiency}}</span>-->
                             <!--</button>-->
-                            {{ skill.name}}<span ng-show="!$last">,&nbsp;</span>
-                        </span>
-                    </span>
+                            <!--{{ skill.name}}<span ng-show="!$last">,&nbsp;</span>-->
+                            {{ skill.name}}
+                      </li>
+                    </ul>
                 </div>
 
             </div>
