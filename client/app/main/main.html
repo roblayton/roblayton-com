@@ -134,7 +134,6 @@
 
             <h2>Core Skills</h2>
             <p>My technical skills continue to be my most valuable asset in my day-to-day operations. I'm continuously leveraging and writing software to drive decisions and optimize processes. They also allow me to lead teams from a variety of different disciplines, including web development, software development, product development, system administration, and quality assurance.</p>
-
             <!--Display Disciplines-->
             <div ng-repeat="discipline in disciplines | filter: {type: 'core'}">
                 <!--Logged In-->
@@ -186,8 +185,11 @@
                     </form>
                 </span>
 
+            </div>
+        </div>
 
                 <!--Public-->
+            <div class="col-md-4" ng-repeat="discipline in disciplines | filter: {type: 'core'}">
                 <div ng-hide="isLoggedIn()" style="position: relative; float: left; width: 300px">
                     <h3>{{discipline.name}}</h3>
                     <p>{{discipline.info}}</p>
