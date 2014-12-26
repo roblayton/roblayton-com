@@ -190,7 +190,7 @@
 
                 <!--Public-->
             <div class="col-md-4" ng-repeat="discipline in disciplines | filter: {type: 'core'}">
-                <div ng-hide="isLoggedIn()" style="position: relative; float: left; width: 300px">
+                <div ng-hide="isLoggedIn()">
                     <h3>{{discipline.name}}</h3>
                     <p>{{discipline.info}}</p>
 
